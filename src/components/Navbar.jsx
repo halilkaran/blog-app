@@ -34,7 +34,7 @@ const Navbar = () => {
         }}
       >
         <Typography
-          sx={{ color: "#363432", fontFamily: "'Metamorphous', cursive" }}
+          sx={{ color: "#D2E3DD", fontFamily: "'Metamorphous', cursive" }}
         >
           HALOKAR
         </Typography>
@@ -74,6 +74,8 @@ const Navbar = () => {
         PaperProps={{
           elevation: 0,
           sx: {
+            backgroundColor: "#196774",
+            color: "#FCD47D",
             overflow: "visible",
             filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
@@ -101,10 +103,16 @@ const Navbar = () => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar /> Log in
+          <ListItemIcon>
+            <FaUserAlt />
+          </ListItemIcon>
+          Log in
         </MenuItem>
         <MenuItem>
-          <Avatar /> Register
+          <ListItemIcon>
+            <FaUserAlt />
+          </ListItemIcon>
+          Register
         </MenuItem>
         <Divider />
         <MenuItem>

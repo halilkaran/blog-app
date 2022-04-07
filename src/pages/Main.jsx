@@ -1,11 +1,15 @@
 import React from 'react'
+import Dashboard from '../components/Dashboard'
 import Navbar from '../components/Navbar'
+import Login from './Login'
 
 const Main = () => {
   return (
       <div>
           
-<Navbar/>
+          <Navbar />
+          <Dashboard/>
+          {/* <Login /> */}
 
     </div>
   )
