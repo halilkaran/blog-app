@@ -1,19 +1,31 @@
 import { Grid, TextField, Button, Link } from "@mui/material";
-import { deepPurple } from "@mui/material/colors";
 import { Form } from "formik";
+import go from "../assets/goog.png";
+import { signIn, signUpWithGoogle, userStateChecker } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { signIn, signUpWithGoogle } from "../utils/firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+
 const SignUpForm = (props) => {
+  const { currentUser } = useSelector((state) => state.user);
   const navigate = useNavigate();
+
   const { values, handleChange, handleBlur, errors, touched } = props;
-  const handleGoogleSingIn = () => {
-    //   signUpWithGoogle();
-      navigate("/")
-    };
-    const handleLogin = () => {
-    //   signIn(values.email, values.password);
-     navigate("/") 
-    };
+  const dispatch = useDispatch();
+
+  const handleLogin = async () => {
+    signIn(dispatch, values.email, values.password);
+
+    navigate("/");
+    console.log(currentUser);
+  };
+
+  const handleGoogleSingIn =  () => {
+   signUpWithGoogle(dispatch);
+
+     navigate("/");
+  };
+
   return (
     <Form>
       <Grid container spacing={4}>
@@ -50,19 +62,31 @@ const SignUpForm = (props) => {
 
         <Grid item xs={12}>
           <Button
+            onClick={handleLogin}
             type="submit"
             variant="contained"
             fullWidth
-            sx={{ bgcolor: deepPurple[500] }}
-            onClick={handleLogin}
+            sx={{
+              height: "3rem"
+            }}
           >
             Signup
           </Button>
         </Grid>
-
         <Grid item xs={12}>
-          <Button variant="contained" onClick={handleGoogleSingIn}>
-            Continue with Google
+          <Button
+            variant="contained"
+            onClick={handleGoogleSingIn}
+            fullWidth
+            sx={{
+              backgroundColor: "white",
+              color: "blue",
+              fontWeight: "bold",
+              height: "3rem"
+            }}
+          >
+            CONTINUE WITH
+            <img src={go} width="150" height="40" />
           </Button>
         </Grid>
       </Grid>

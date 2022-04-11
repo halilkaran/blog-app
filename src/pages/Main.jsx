@@ -1,16 +1,17 @@
 import React from 'react'
 import Dashboard from '../components/Dashboard'
 import Navbar from '../components/Navbar'
+import Profile from './Profile'
 import Login from './Login'
 
 const Main = () => {
   return (
       <div>
           
-          <Navbar />
+          
           <Dashboard/>
           {/* <Login /> */}
-
+{/* <Profile/> */}
     </div>
   )
 }

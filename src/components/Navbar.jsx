@@ -12,7 +12,19 @@ import Logout from "@mui/icons-material/Logout";
 import { Link } from "@mui/material";
 import { FaUserAlt } from "react-icons/fa";
 import { BsFileEarmarkPlus } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+import { logOut } from "../utils/firebase";
+import { useDispatch, useSelector } from "react-redux";
+
+
 const Navbar = () => {
+const navigate= useNavigate()
+const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
+ 
+ 
+ 
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -34,13 +46,18 @@ const Navbar = () => {
         }}
       >
         <Typography
-          sx={{ color: "#D2E3DD", fontFamily: "'Metamorphous', cursive" }}
+          onClick={() => navigate("/")}
+          sx={{
+            cursor: "pointer",
+            color: "#D2E3DD",
+            fontFamily: "'Metamorphous', cursive"
+          }}
         >
           HALOKAR
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
           <Link
-            to="/"
+            onClick={() => navigate("/")}
             sx={{
               fontSize: "2rem",
               textDecoration: "none",
@@ -52,6 +69,7 @@ const Navbar = () => {
             WEB DEVELOPERS BLOG
           </Link>
         </Typography>
+
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -61,10 +79,20 @@ const Navbar = () => {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
+            <Typography
+              sx={{
+                marginRight: "2rem",
+                color: "#D2E3DD",
+                fontFamily: "'Metamorphous', cursive"
+              }}
+            >
+              {currentUser ? currentUser.displayName?.toUpperCase() : ""}
+            </Typography>
             <FaUserAlt />
           </IconButton>
         </Tooltip>
       </Box>
+
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -102,37 +130,51 @@ const Navbar = () => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem>
-          <ListItemIcon>
-            <FaUserAlt />
-          </ListItemIcon>
-          Log in
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <FaUserAlt />
-          </ListItemIcon>
-          Register
-        </MenuItem>
+        {currentUser ? (
+          <div>
+            <MenuItem onClick={() => navigate("/profile")}>
+              <ListItemIcon>
+                <FaUserAlt />
+              </ListItemIcon>
+              Profile
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/newblog")}>
+              <ListItemIcon>
+                <BsFileEarmarkPlus />
+              </ListItemIcon>
+              New Blog
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                logOut(dispatch);
+                navigate("/");
+              }}
+            >
+              <ListItemIcon>
+                <Logout />
+              </ListItemIcon>
+              Logout
+            </MenuItem>{" "}
+          </div>
+        ) : (
+          <div>
+            {" "}
+            <MenuItem onClick={() => navigate("/login")}>
+              <ListItemIcon>
+                <FaUserAlt />
+              </ListItemIcon>
+              Log in
+            </MenuItem>
+            <MenuItem onClick={() => navigate("/register")}>
+              <ListItemIcon>
+                <FaUserAlt />
+              </ListItemIcon>
+              Register
+            </MenuItem>
+          </div>
+        )}
+
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <FaUserAlt />
-          </ListItemIcon>
-          Profile
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <BsFileEarmarkPlus />
-          </ListItemIcon>
-          New Blog
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          Logout
-        </MenuItem>
       </Menu>
     </React.Fragment>
   );
