@@ -14,9 +14,11 @@ import {
   get,
   getDatabase,
   onValue,
+  push,
   query,
   ref,
-  set
+  set,
+  update
 } from "firebase/database";
 import { useSelector } from "react-redux";
 import { readBlogAction } from "../redux/actions/dashboardActions";
@@ -114,3 +116,18 @@ export const readBlogData = (dispatch ) => {
     
   });
 };
+
+
+
+
+export const updateBlogData = (blogs) => {
+  console.log(blogs.id);
+  const db = getDatabase();
+   const newPostKey = push(child(ref(db), "blog")).key;
+
+  const updates = {};
+   const postData=blogs
+  // updates["/blog/" + blogs.id] = postData;
+    updates["/blog/" + blogs.id + "/" + newPostKey] = postData;
+  return update(ref(db), updates);
+}
