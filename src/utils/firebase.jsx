@@ -19,6 +19,7 @@ import {
   set
 } from "firebase/database";
 import { useSelector } from "react-redux";
+import { readBlogAction } from "../redux/actions/dashboardActions";
 import { setLoginAction, setLogoutAction } from "../redux/actions/userAction";
 
 const firebaseConfig = {
@@ -101,14 +102,15 @@ export const writeBlogData = (userId, blogs) => {
 // };
 
 
-export const readBlogData = ( ) => {
+export const readBlogData = (dispatch ) => {
   const db = getDatabase();
   const starCountRef = ref(db, "blog");
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
     console.log(data);
     const arrayData = Object.values(data);
-    console.log(arrayData);
+     console.log(arrayData);
+    dispatch(readBlogAction(arrayData));
     
   });
 };

@@ -27,15 +27,21 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Details() {
+export default function Cards({data}) {
   const [expanded, setExpanded] = React.useState(false);
-
+  const [card] = data;
+  console.log(card);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const handleDetails = () => {
+    
+  }
 
     return (
       <Card
+        onClick={handleDetails}
+        
         sx={{
           backgroundColor: "#D2E3DD",
           maxWidth: 345,
@@ -47,7 +53,7 @@ export default function Details() {
         <CardMedia
           component="img"
           height="194"
-          image="https://cdn.pixabay.com/photo/2021/03/30/08/56/woman-6136425_960_720.jpg"
+          image={card.img  }
           alt="Paella dish"
         />
         <CardHeader
@@ -56,15 +62,13 @@ export default function Details() {
             flexDirection: "column",
             alignItems: "center "
           }}
-          title="JS"
-          subheader={new Date().getFullYear()}
+          title={card.title}
+          subheader={card.date }
         />
 
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+          <Typography sx={{height:"2rem" , overflow:"hidden" }} variant="body2" color="text.secondary">
+           {card.text }
           </Typography>
         </CardContent>
         <Card>
@@ -80,8 +84,8 @@ export default function Details() {
             avatar={
               <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
             }
-            title="Halil"
-            subheader="halilkarancontact@gmail.com"
+            title={card.name }
+            subheader={card.email }
           />
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">

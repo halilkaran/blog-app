@@ -7,7 +7,7 @@ const initialState = {
 const blogReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case READ_BLOG:
-      return { blogs:  payload };
+      return { dashboards: payload };
      
     default:
       return state;

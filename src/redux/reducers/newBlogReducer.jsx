@@ -8,7 +8,7 @@ const initialState = {
 const blogReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_NEW_BLOG:
-      return { blogs:[...state.blogs, payload] };
+      return { blogs:[ payload] };
     case SET_UPDATE_BLOG:
       return { ...state, selectedUser: payload };
     default:

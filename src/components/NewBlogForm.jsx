@@ -24,14 +24,15 @@ const { currentUser } = useSelector((state) => state.user);
     e.preventDefault();
    
  const date=new Date();
-    const dates = [date.getDate(), date.toLocaleString('default', { month: 'long' }), date.getFullYear()];
+    const dates = [date.getDate()," ", date.toLocaleString('default', { month: 'long' }), " ", date.getFullYear()];
     const data = {
       id: Date.now(),
       img: values.image,
       title: values.title,
       date: dates,
       text: values.content,
-      email: currentUser.email
+      email: currentUser.email,
+      name: currentUser.displayName?currentUser.displayName:currentUser.email[0]
     };
     console.log(blogs);
     dispatch(setNewBlogAction(data));
