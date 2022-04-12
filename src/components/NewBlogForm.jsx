@@ -5,13 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
  
 import { setNewBlogAction } from "../redux/actions/newBlogAction";
+import { writeBlogData } from "../utils/firebase";
 
 const NewBlogForm = (props) => {
      const navigate = useNavigate()
      const { values, handleChange, handleBlur } = props;
      const dispatch = useDispatch();
 const { currentUser } = useSelector((state) => state.user);
-
+ const { blogs } = useSelector((state) => state.blog);
 
    
  
@@ -32,8 +33,10 @@ const { currentUser } = useSelector((state) => state.user);
       text: values.content,
       email: currentUser.email
     };
-    console.log(data);
+    console.log(blogs);
     dispatch(setNewBlogAction(data));
+    writeBlogData(data.id, blogs)
+    
      }
   return (
     <div>

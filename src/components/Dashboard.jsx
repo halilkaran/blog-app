@@ -1,10 +1,12 @@
-import * as React from 'react';
+import   React,  {useEffect} from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Details from './Details';
 import { CardHeader } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { readBlogData } from '../utils/firebase';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,6 +17,14 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Dashboard() {
+  const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+const data=readBlogData() 
+ 
+
+ 
+
     return (
       <>
         <CardHeader
@@ -36,6 +46,11 @@ export default function Dashboard() {
           }}
         >
           <Grid container spacing={4} sx={{justifyContent: "center",}}>
+           
+           
+           
+           
+           
             <Grid item>
               <Details />
             </Grid>

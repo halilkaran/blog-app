@@ -9,9 +9,18 @@ import {
   updateProfile,
   signInWithEmailAndPassword
 } from "firebase/auth";
- 
+import {
+  child,
+  get,
+  getDatabase,
+  onValue,
+  query,
+  ref,
+  set
+} from "firebase/database";
+import { useSelector } from "react-redux";
 import { setLoginAction, setLogoutAction } from "../redux/actions/userAction";
- 
+
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -25,10 +34,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
-console.log(auth);
-
-
-
 
 //! Sign Up with Google Provider
 export const signUpWithGoogle = (dispatch) => {
@@ -37,7 +42,6 @@ export const signUpWithGoogle = (dispatch) => {
   signInWithPopup(auth, provider)
     .then((res) => {
       dispatch(setLoginAction(res.user.auth.currentUser));
-      
     })
     .catch((error) => {
       console.log(error);
@@ -51,23 +55,12 @@ export const logOut = (dispatch) => {
 };
 
 //! Creating New User (Register)
-// export const createUser = async (dispatch, email, password) => {
-//   try {
-//     await createUserWithEmailAndPassword(auth, email, password);
-//     await updateProfile(auth.currentUser, { displayName: email });
-//     console.log(auth);
-//     dispatch(setLoginAction(auth.currentUser));
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 export const createUser = async (email, password) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-       
+
       // ...
     })
     .catch((error) => {
@@ -76,16 +69,46 @@ export const createUser = async (email, password) => {
       console.log(errorCode, errorMessage);
       // ..
     });
-
-}
-
-
-
+};
 
 //!Sign in with email and password
-export const signIn = (dispatch, email, password, ) => {
-  signInWithEmailAndPassword(auth, email, password).then((res) => {
-    dispatch(setLoginAction(res.user))
+export const signIn = (dispatch, email, password) => {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((res) => {
+      dispatch(setLoginAction(res.user));
+    })
+    .catch((err) => alert(err));
+};
+
+export const writeBlogData = (userId, blogs) => {
+  const db = getDatabase();
+  set(ref(db, "blog/" + userId), blogs);
+};
+
+// export const readBlogData = async() => {
+//   const dbRef = ref(getDatabase());
+// let data = await get(child(dbRef, `blog`))
+//   .then((snapshot) => {
+//     snapshot.val()
+      
      
-  }).catch((err) => alert(err))
+//     })
+//     .catch((error) => {
+//       console.error(error);
+//     });
+  
+//   return data
+// };
+
+
+export const readBlogData = ( ) => {
+  const db = getDatabase();
+  const starCountRef = ref(db, "blog");
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+    const arrayData = Object.values(data);
+    console.log(arrayData);
+    
+  });
 };
