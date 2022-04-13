@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+ 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -18,22 +18,32 @@ import { Box } from "@mui/material";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
+import { deleteCard } from "../utils/firebase";
 
 
 
 export default function Details() {
+
   const { state } = useLocation();
    const navigate = useNavigate()
 
-  const [expanded, setExpanded] = React.useState(false);
+ 
+  const [expanded] = React.useState(false);
   const card = state;
   console.log(card);
-  const { currentUser } = useSelector((state) => state.user);
+ 
     const handleUpdate = () => {
     navigate("/update", { state: card });
-}
+  }
+  
+   const handleDelete = (id) => {
+     console.log(id);
+     deleteCard(id);
+     navigate("/");
+   };
   return (
-    <Box
+    
+    <Box 
       sx={{
         marginTop: "20vh",
         display: "flex",
@@ -46,15 +56,17 @@ export default function Details() {
           backgroundColor: "#D2E3DD",
           maxWidth: "50%",
           minWidth: "50%",
-
+          minHeight: "50vh",
           display: "flex",
-          flexDirection: "column"
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "space-evenly"
         }}
       >
         <CardMedia
           component="img"
-          height="194"
-          image={card.img}
+          height="300"
+          image={card.image}
           alt="Paella dish"
         />
         <CardHeader
@@ -64,7 +76,7 @@ export default function Details() {
             alignItems: "center ",
             justifyContent: "center",
             textAlign: "center",
-            paddingBottom: "0.8rem"
+            paddingBottom: "0.6rem"
           }}
           title={card.title}
         />
@@ -83,12 +95,14 @@ export default function Details() {
         <CardContent>
           <Typography
             sx={{
-              height: "2.4rem",
+              fontSize: "1.4rem",
+              height: "3.4rem",
               padding: "0.3rem",
               overflow: "hidden",
-              textAlign: "center"
+              textAlign: "center", 
+              marginTop:"0"
             }}
-            variant="body2"
+            
             color="text.secondary"
           >
             {card.text}
@@ -127,25 +141,27 @@ export default function Details() {
 
           alignItems: "center ",
           justifyContent: "start",
-          gap: "15vw",
+          gap: "10vw",
           padding: "2rem"
         }}
       >
-              <Button
-                  onClick={handleUpdate}
-          startIcon={<UpdateIcon/>}
+        <Button
+          onClick={handleUpdate}
+          startIcon={<UpdateIcon />}
           type="submit"
           variant="contained"
           fullWidth
           sx={{
             marginBottom: "2rem",
             backgroundColor: "#608560",
-            height: "3rem"
+            height: "4rem",
+            widht: "6rem"
           }}
         >
           UPDATE
         </Button>
         <Button
+          onClick={() => handleDelete(card.id)}
           startIcon={<DeleteIcon />}
           type="submit"
           variant="contained"
@@ -153,7 +169,7 @@ export default function Details() {
           sx={{
             marginBottom: "2rem",
             backgroundColor: "darkred",
-            height: "3rem"
+            height: "4rem"
           }}
         >
           DELETE

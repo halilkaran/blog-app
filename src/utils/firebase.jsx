@@ -17,6 +17,7 @@ import {
   push,
   query,
   ref,
+  remove,
   set,
   update
 } from "firebase/database";
@@ -85,6 +86,7 @@ export const signIn = (dispatch, email, password) => {
 
 export const writeBlogData = (userId, blogs) => {
   const db = getDatabase();
+  console.log(blogs);
   set(ref(db, "blog/" + userId), blogs);
 };
 
@@ -121,13 +123,21 @@ export const readBlogData = (dispatch ) => {
 
 
 export const updateBlogData = (blogs) => {
-  console.log(blogs.id);
+  console.log(blogs);
   const db = getDatabase();
-   const newPostKey = push(child(ref(db), "blog")).key;
+  //  const newPostKey = push(child(ref(db), "blog")).key;
 
   const updates = {};
    const postData=blogs
   // updates["/blog/" + blogs.id] = postData;
-    updates["/blog/" + blogs.id + "/" + newPostKey] = postData;
+    updates["blog/" + blogs.id  ] = postData;
   return update(ref(db), updates);
 }
+
+
+export const deleteCard = (id) => {
+  const db = getDatabase();
+  // const userRef = ref(db, 'contact');
+  remove(ref(db, "blog/" + id));
+  // successNote("Deleted");
+};

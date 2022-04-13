@@ -1,14 +1,13 @@
-import { Grid, TextField, Button, Link } from "@mui/material";
+import { Grid, TextField, Button   } from "@mui/material";
 import { Form } from "formik";
 import go from "../assets/goog.png";
-import { signIn, signUpWithGoogle, userStateChecker } from "../utils/firebase";
+import { signIn, signUpWithGoogle } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch    } from "react-redux";
+ 
 
 const SignUpForm = (props) => {
-  const { currentUser } = useSelector((state) => state.user);
-  const navigate = useNavigate();
+   const navigate = useNavigate();
 
   const { values, handleChange, handleBlur, errors, touched } = props;
   const dispatch = useDispatch();
@@ -17,13 +16,13 @@ const SignUpForm = (props) => {
     signIn(dispatch, values.email, values.password);
 
     navigate("/");
-    console.log(currentUser);
+ 
   };
 
   const handleGoogleSingIn =  () => {
    signUpWithGoogle(dispatch);
 
-     navigate("/");
+   navigate("/")
   };
 
   return (

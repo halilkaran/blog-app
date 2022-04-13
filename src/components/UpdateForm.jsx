@@ -4,38 +4,37 @@ import { Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { setNewBlogAction } from "../redux/actions/newBlogAction";
-import { setUpdateBlogAction } from "../redux/actions/setBlogAction";
-import { updateBlogData, writeBlogData } from "../utils/firebase";
+ import { setUpdateBlogAction } from "../redux/actions/setBlogAction";
+import {    updateBlogData,   } from "../utils/firebase";
 
 const UpdateForm = (props) => {
-    console.log(props.values);
+  console.log(props.values);
   const navigate = useNavigate();
-    const { values, handleChange, handleBlur } = props;
-    console.log(values.id);
+  const { values, handleChange, handleBlur } = props;
+  console.log(values.id);
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
-  const { blogs } = useSelector((state) => state.blog);
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
     const data = {
-      id:values.id,
-        img: values.img,
+      id: values.id,
+      image: values.image,
       title: values.title,
-      date: values.dates,
+      date: values.date,
       text: values.text,
       email: values.email,
       name: values.name
     };
-   
-      dispatch(setUpdateBlogAction(data));
-       
-      console.log(blogs);
-    updateBlogData(...blogs);
+
+    dispatch(setUpdateBlogAction(data));
+
+     updateBlogData(data);
+    navigate("/");
   };
+
+ 
   return (
     <div>
       {currentUser ? (
@@ -61,7 +60,7 @@ const UpdateForm = (props) => {
                 name="image"
                 variant="outlined"
                 type="text"
-                value={values.img}
+                value={values.image}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 fullWidth
@@ -69,9 +68,9 @@ const UpdateForm = (props) => {
             </Grid>
             <Grid item xs={12}>
               <TextareaAutosize
-                id="content"
+                id="text"
                 label="Content*"
-                name="content"
+                name="text"
                 value={values.text}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -88,7 +87,7 @@ const UpdateForm = (props) => {
 
             <Grid item xs={12}>
               <Button
-                type="submit"
+               type="submit"
                 variant="contained"
                 fullWidth
                 sx={{

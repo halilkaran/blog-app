@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
+ 
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -20,8 +20,8 @@ import { useSelector } from "react-redux";
 export default function Cards( {data} ) {
 const navigate= useNavigate()
 
-  const [expanded, setExpanded] = React.useState(false);
-  const [card] = data;
+  const [expanded ] = React.useState(false);
+  const card = data;
   console.log(card);
  const { currentUser } = useSelector((state) => state.user);
   const handleDetails = () => {
@@ -46,7 +46,7 @@ currentUser ? navigate("/details" ,{state:card}): navigate("/login")
       <CardMedia
         component="img"
         height="194"
-        image={card.img}
+        image={card.image}
         alt="Paella dish"
       />
       <CardHeader

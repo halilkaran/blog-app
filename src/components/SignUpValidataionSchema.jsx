@@ -20,6 +20,14 @@ export const SignUpValidationSchema = yup.object().shape({
     .matches(/[a-z]+/, "Password must have a lowercase")
     .matches(/[A-Z]+/, "Password must have a uppercase")
     .matches(/[!?.*@$#%&^()-+]+/, "Password must have a special character"),
+  title: yup
+    .string(),
+  
+  image: yup
+  .string(),
+  content: yup
+   .string(),
+  
   passwordConfirm: yup
     .string()
     .required("Password is required")
@@ -28,3 +36,6 @@ export const SignUpValidationSchema = yup.object().shape({
     return new Date();
   })
 });
+
+           
+           

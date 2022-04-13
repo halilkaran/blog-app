@@ -13,35 +13,37 @@ export default function Profile() {
   
   const { currentUser } = useSelector((state) => state.user);
   
-  const {displayName,  email} = currentUser; ;
+  const {displayName,  email} = currentUser; 
   return (
     <Box
       sx={{
+        marginTop: "6rem",
         display: "flex",
-        padding: "5rem",
+        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center"
       }}
     >
-      <Card sx={{ maxWidth: 375 }}>
-        <CardActionArea
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "2rem"
-          }}
-        >
+      <Card
+        sx={{
+          minWidth: "50vw",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        <CardActionArea sx={{ display: "flex", flexDirection: "column" }}>
           <Avatar
             sx={{
               bgcolor: "rgb(31, 108, 250)",
               height: 130,
               width: 130,
-              fontSize: "4rem"
+              fontSize: "4rem",
+              textAlign: "center"
             }}
           >
-            {currentUser ? displayName[0] : ""}
+            {currentUser?.displayName || currentUser?.email.split("@")[0][0]}
           </Avatar>
           <CardContent
             sx={{
@@ -55,7 +57,7 @@ export default function Profile() {
               Display Name
             </Typography>
             <Typography variant="h4" component="div">
-              {displayName}
+              {displayName || currentUser?.email.split("@")[0]}
             </Typography>
             <Typography gutterBottom variant="h6" component="div">
               Email

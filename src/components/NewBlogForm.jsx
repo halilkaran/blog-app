@@ -22,21 +22,22 @@ const { currentUser } = useSelector((state) => state.user);
   
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+   const id=Date.now()
  const date=new Date();
     const dates = [date.getDate()," ", date.toLocaleString('default', { month: 'long' }), " ", date.getFullYear()];
     const data = {
-      id: Date.now(),
-      img: values.image,
+      id: id,
+      image: values.image,
       title: values.title,
       date: dates,
-      text: values.content,
+      text: values.text,
       email: currentUser.email,
-      name: currentUser.displayName?currentUser.displayName:currentUser.email[0]
+      name: currentUser.displayName?currentUser.displayName:currentUser.email.split("@")[0]
     };
-    console.log(blogs);
+    console.log(blogs[0], data.id);
     dispatch(setNewBlogAction(data));
-    writeBlogData(data.id, blogs)
+    writeBlogData(id, data)
+    navigate("/")
     
      }
   return (
@@ -72,10 +73,10 @@ const { currentUser } = useSelector((state) => state.user);
             </Grid>
             <Grid item xs={12}>
               <TextareaAutosize
-                id="content"
+                id="text"
                 label="Content*"
-                name="content"
-                value={values.content}
+                name="text"
+                value={values.text}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 aria-label="minimum height"
