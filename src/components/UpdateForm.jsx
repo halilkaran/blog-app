@@ -4,6 +4,7 @@ import { Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+<<<<<<< HEAD
  import { setUpdateBlogAction } from "../redux/actions/setBlogAction";
 import {    updateBlogData,   } from "../utils/firebase";
 
@@ -23,10 +24,35 @@ const UpdateForm = (props) => {
       image: values.image,
       title: values.title,
       date: values.date,
+=======
+import { setNewBlogAction } from "../redux/actions/newBlogAction";
+import { setUpdateBlogAction } from "../redux/actions/setBlogAction";
+import { updateBlogData, writeBlogData } from "../utils/firebase";
+
+const UpdateForm = (props) => {
+    console.log(props.values);
+  const navigate = useNavigate();
+    const { values, handleChange, handleBlur } = props;
+    console.log(values.id);
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
+  const { blogs } = useSelector((state) => state.blog);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    
+    const data = {
+      id:values.id,
+        img: values.img,
+      title: values.title,
+      date: values.dates,
+>>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
       text: values.text,
       email: values.email,
       name: values.name
     };
+<<<<<<< HEAD
 
     dispatch(setUpdateBlogAction(data));
 
@@ -35,6 +61,14 @@ const UpdateForm = (props) => {
   };
 
  
+=======
+   
+      dispatch(setUpdateBlogAction(data));
+       
+      console.log(blogs);
+    updateBlogData(...blogs);
+  };
+>>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
   return (
     <div>
       {currentUser ? (
@@ -60,7 +94,11 @@ const UpdateForm = (props) => {
                 name="image"
                 variant="outlined"
                 type="text"
+<<<<<<< HEAD
                 value={values.image}
+=======
+                value={values.img}
+>>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
                 onChange={handleChange}
                 onBlur={handleBlur}
                 fullWidth
@@ -68,9 +106,15 @@ const UpdateForm = (props) => {
             </Grid>
             <Grid item xs={12}>
               <TextareaAutosize
+<<<<<<< HEAD
                 id="text"
                 label="Content*"
                 name="text"
+=======
+                id="content"
+                label="Content*"
+                name="content"
+>>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
                 value={values.text}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -87,7 +131,11 @@ const UpdateForm = (props) => {
 
             <Grid item xs={12}>
               <Button
+<<<<<<< HEAD
                type="submit"
+=======
+                type="submit"
+>>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
                 variant="contained"
                 fullWidth
                 sx={{
