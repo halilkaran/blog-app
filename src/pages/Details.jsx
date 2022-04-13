@@ -1,5 +1,5 @@
 import * as React from "react";
- 
+
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,37 +13,34 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { BiCommentDetail } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
 import { deleteCard } from "../utils/firebase";
-
-
+import { useSelector } from "react-redux";
 
 export default function Details() {
-
   const { state } = useLocation();
-   const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
+  
 
- 
   const [expanded] = React.useState(false);
   const card = state;
   console.log(card);
- 
-    const handleUpdate = () => {
+console.log(Boolean(currentUser.email === card.email));
+  const handleUpdate = () => {
     navigate("/update", { state: card });
-  }
-  
-   const handleDelete = (id) => {
-     console.log(id);
-     deleteCard(id);
-     navigate("/");
-   };
+  };
+
+  const handleDelete = (id) => {
+    console.log(id);
+    deleteCard(id);
+    navigate("/");
+  };
   return (
-    
-    <Box 
+    <Box
       sx={{
         marginTop: "20vh",
         display: "flex",
@@ -99,10 +96,9 @@ export default function Details() {
               height: "3.4rem",
               padding: "0.3rem",
               overflow: "hidden",
-              textAlign: "center", 
-              marginTop:"0"
+              textAlign: "center",
+              marginTop: "0"
             }}
-            
             color="text.secondary"
           >
             {card.text}
@@ -135,46 +131,51 @@ export default function Details() {
           <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
         </Card>
       </Card>
-      <Box
-        sx={{
-          display: "flex",
 
-          alignItems: "center ",
-          justifyContent: "start",
-          gap: "10vw",
-          padding: "2rem"
-        }}
-      >
-        <Button
-          onClick={handleUpdate}
-          startIcon={<UpdateIcon />}
-          type="submit"
-          variant="contained"
-          fullWidth
+      {Boolean(currentUser.email === card.email) ? (
+        <Box
           sx={{
-            marginBottom: "2rem",
-            backgroundColor: "#608560",
-            height: "4rem",
-            widht: "6rem"
+            display: "flex",
+
+            alignItems: "center ",
+            justifyContent: "start",
+            gap: "10vw",
+            padding: "2rem"
           }}
         >
-          UPDATE
-        </Button>
-        <Button
-          onClick={() => handleDelete(card.id)}
-          startIcon={<DeleteIcon />}
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{
-            marginBottom: "2rem",
-            backgroundColor: "darkred",
-            height: "4rem"
-          }}
-        >
-          DELETE
-        </Button>
-      </Box>
+          <Button
+            onClick={handleUpdate}
+            startIcon={<UpdateIcon />}
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{
+              marginBottom: "2rem",
+              backgroundColor: "#608560",
+              height: "4rem",
+              widht: "6rem"
+            }}
+          >
+            UPDATE
+          </Button>
+          <Button
+            onClick={() => handleDelete(card.id)}
+            startIcon={<DeleteIcon />}
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{
+              marginBottom: "2rem",
+              backgroundColor: "darkred",
+              height: "4rem"
+            }}
+          >
+            DELETE
+          </Button>
+        </Box>
+      ) : (
+        ""
+      )}
     </Box>
   );
 }

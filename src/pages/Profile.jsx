@@ -1,12 +1,11 @@
-import  React , {useEffect} from "react";
+import  React   from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
+ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { Box } from "@mui/system";
-import { useDispatch, useSelector } from "react-redux";
+import {   useSelector } from "react-redux";
  
  
 export default function Profile() {

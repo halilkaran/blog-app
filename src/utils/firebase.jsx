@@ -1,27 +1,21 @@
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
-  onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
   createUserWithEmailAndPassword,
-  updateProfile,
   signInWithEmailAndPassword
 } from "firebase/auth";
 import {
-  child,
-  get,
   getDatabase,
   onValue,
-  push,
-  query,
   ref,
   remove,
   set,
   update
 } from "firebase/database";
-import { useSelector } from "react-redux";
+
 import { readBlogAction } from "../redux/actions/dashboardActions";
 import { setLoginAction, setLogoutAction } from "../redux/actions/userAction";
 
@@ -64,7 +58,7 @@ export const createUser = async (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-
+console.log(user);
       // ...
     })
     .catch((error) => {
@@ -95,32 +89,26 @@ export const writeBlogData = (userId, blogs) => {
 // let data = await get(child(dbRef, `blog`))
 //   .then((snapshot) => {
 //     snapshot.val()
-      
-     
+
 //     })
 //     .catch((error) => {
 //       console.error(error);
 //     });
-  
+
 //   return data
 // };
 
-
-export const readBlogData = (dispatch ) => {
+export const readBlogData = (dispatch) => {
   const db = getDatabase();
   const starCountRef = ref(db, "blog");
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
     console.log(data);
     const arrayData = Object.values(data);
-     console.log(arrayData);
+    console.log(arrayData);
     dispatch(readBlogAction(arrayData));
-    
   });
 };
-
-
-
 
 export const updateBlogData = (blogs) => {
   console.log(blogs);
@@ -128,12 +116,11 @@ export const updateBlogData = (blogs) => {
   //  const newPostKey = push(child(ref(db), "blog")).key;
 
   const updates = {};
-   const postData=blogs
+  const postData = blogs;
   // updates["/blog/" + blogs.id] = postData;
-    updates["blog/" + blogs.id  ] = postData;
+  updates["blog/" + blogs.id] = postData;
   return update(ref(db), updates);
-}
-
+};
 
 export const deleteCard = (id) => {
   const db = getDatabase();
