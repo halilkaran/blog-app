@@ -23,7 +23,8 @@
     "redux": "^4.1.2",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "formik": "^2.2.9"
   },
   "scripts": {
     "start": "react-scripts start",
