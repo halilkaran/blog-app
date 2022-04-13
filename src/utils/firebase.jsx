@@ -10,14 +10,8 @@ import {
 import {
   getDatabase,
   onValue,
-<<<<<<< HEAD
   ref,
   remove,
-=======
-  push,
-  query,
-  ref,
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
   set,
   update
 } from "firebase/database";
@@ -116,7 +110,6 @@ export const readBlogData = (dispatch) => {
   });
 };
 
-<<<<<<< HEAD
 export const updateBlogData = (blogs) => {
   console.log(blogs);
   const db = getDatabase();
@@ -135,19 +128,3 @@ export const deleteCard = (id) => {
   remove(ref(db, "blog/" + id));
   // successNote("Deleted");
 };
-=======
-
-
-
-export const updateBlogData = (blogs) => {
-  console.log(blogs.id);
-  const db = getDatabase();
-   const newPostKey = push(child(ref(db), "blog")).key;
-
-  const updates = {};
-   const postData=blogs
-  // updates["/blog/" + blogs.id] = postData;
-    updates["/blog/" + blogs.id + "/" + newPostKey] = postData;
-  return update(ref(db), updates);
-}
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
