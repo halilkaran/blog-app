@@ -1,9 +1,5 @@
 import * as React from "react";
-<<<<<<< HEAD
 
-=======
-import { styled } from "@mui/material/styles";
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -17,15 +13,10 @@ import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { BiCommentDetail } from "react-icons/bi";
 import { useLocation, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
-=======
-import { useSelector } from "react-redux";
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
 import { Box } from "@mui/material";
 import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
-<<<<<<< HEAD
 import { deleteCard } from "../utils/firebase";
 import { useSelector } from "react-redux";
 
@@ -48,22 +39,6 @@ console.log(Boolean(currentUser.email === card.email));
     deleteCard(id);
     navigate("/");
   };
-=======
-
-
-
-export default function Details() {
-  const { state } = useLocation();
-   const navigate = useNavigate()
-
-  const [expanded, setExpanded] = React.useState(false);
-  const card = state;
-  console.log(card);
-  const { currentUser } = useSelector((state) => state.user);
-    const handleUpdate = () => {
-    navigate("/update", { state: card });
-}
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
   return (
     <Box
       sx={{
@@ -78,28 +53,17 @@ export default function Details() {
           backgroundColor: "#D2E3DD",
           maxWidth: "50%",
           minWidth: "50%",
-<<<<<<< HEAD
           minHeight: "50vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
           alignItems: "space-evenly"
-=======
-
-          display: "flex",
-          flexDirection: "column"
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
         }}
       >
         <CardMedia
           component="img"
-<<<<<<< HEAD
           height="300"
           image={card.image}
-=======
-          height="194"
-          image={card.img}
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
           alt="Paella dish"
         />
         <CardHeader
@@ -109,11 +73,7 @@ export default function Details() {
             alignItems: "center ",
             justifyContent: "center",
             textAlign: "center",
-<<<<<<< HEAD
             paddingBottom: "0.6rem"
-=======
-            paddingBottom: "0.8rem"
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
           }}
           title={card.title}
         />
@@ -132,7 +92,6 @@ export default function Details() {
         <CardContent>
           <Typography
             sx={{
-<<<<<<< HEAD
               fontSize: "1.4rem",
               height: "3.4rem",
               padding: "0.3rem",
@@ -140,14 +99,6 @@ export default function Details() {
               textAlign: "center",
               marginTop: "0"
             }}
-=======
-              height: "2.4rem",
-              padding: "0.3rem",
-              overflow: "hidden",
-              textAlign: "center"
-            }}
-            variant="body2"
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
             color="text.secondary"
           >
             {card.text}
@@ -180,7 +131,6 @@ export default function Details() {
           <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
         </Card>
       </Card>
-<<<<<<< HEAD
 
       {Boolean(currentUser.email === card.email) ? (
         <Box
@@ -226,46 +176,6 @@ export default function Details() {
       ) : (
         ""
       )}
-=======
-      <Box
-        sx={{
-          display: "flex",
-
-          alignItems: "center ",
-          justifyContent: "start",
-          gap: "15vw",
-          padding: "2rem"
-        }}
-      >
-              <Button
-                  onClick={handleUpdate}
-          startIcon={<UpdateIcon/>}
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{
-            marginBottom: "2rem",
-            backgroundColor: "#608560",
-            height: "3rem"
-          }}
-        >
-          UPDATE
-        </Button>
-        <Button
-          startIcon={<DeleteIcon />}
-          type="submit"
-          variant="contained"
-          fullWidth
-          sx={{
-            marginBottom: "2rem",
-            backgroundColor: "darkred",
-            height: "3rem"
-          }}
-        >
-          DELETE
-        </Button>
-      </Box>
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
     </Box>
   );
 }
