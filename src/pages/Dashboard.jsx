@@ -31,7 +31,7 @@ console.log(dashboards);
       <Box
         sx={{
           flexGrow: 1,
-          margin: "2rem"
+          margin: "2rem",   
         }}
       >
         <Grid
@@ -43,7 +43,7 @@ console.log(dashboards);
           {[...dashboards].map((data, index) => {
             console.log()
             return (
-              <Grid item key={index}>
+              <Grid  item key={index}>
                 <Cards data={data} />
               </Grid>
             );

@@ -21,7 +21,7 @@ const Navbar = () => {
 const navigate= useNavigate()
 const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
- 
+ const display=currentUser.email?.split("@")[0];
  
  
 
@@ -37,6 +37,7 @@ const dispatch = useDispatch();
     <React.Fragment>
       <Box
         sx={{
+         
           height: "5rem",
           display: "flex",
           justifyContent: "space-between",
@@ -86,7 +87,7 @@ const dispatch = useDispatch();
                 fontFamily: "'Metamorphous', cursive"
               }}
             >
-              {currentUser ? currentUser.displayName?.toUpperCase() : ""}
+              {currentUser ? currentUser.displayName?.toUpperCase() || display: ""  }
             </Typography>
             <FaUserAlt />
           </IconButton>
