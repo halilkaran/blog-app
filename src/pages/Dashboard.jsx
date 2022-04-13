@@ -14,9 +14,8 @@ export default function Dashboard() {
 
 
 useEffect(() => {
-  readBlogData(dispatch); 
-  
-}, [ ])
+  readBlogData(dispatch);
+}, [dispatch]);
 
  
 console.log(dashboards);
