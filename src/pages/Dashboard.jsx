@@ -24,11 +24,7 @@ console.log(dashboards);
       <Box
         sx={{
           flexGrow: 1,
-<<<<<<< HEAD
           margin: "6rem",   
-=======
-          margin: "2rem",   
->>>>>>> 89367f43f58945361e0c3d92a3a489d8e8a4167e
         }}
       >
         <Grid
