@@ -15,13 +15,14 @@ import { BsFileEarmarkPlus } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { logOut } from "../utils/firebase";
 import { useDispatch, useSelector } from "react-redux";
+import { successNote } from "../utils/customTostify";
 
 
 const Navbar = () => {
 const navigate= useNavigate()
 const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
- const display=currentUser.email?.split("@")[0];
+ const display=currentUser?.email?.split("@")[0];
  
  
 
@@ -87,7 +88,7 @@ const dispatch = useDispatch();
                 fontFamily: "'Metamorphous', cursive"
               }}
             >
-              {currentUser ? currentUser.displayName?.toUpperCase() || display: ""  }
+              {currentUser ? currentUser.displayName?.toUpperCase() || display  : ""  }
             </Typography>
             <FaUserAlt />
           </IconButton>
@@ -149,6 +150,7 @@ const dispatch = useDispatch();
               onClick={() => {
                 logOut(dispatch);
                 navigate("/");
+                successNote("LOGOUT")
               }}
             >
               <ListItemIcon>

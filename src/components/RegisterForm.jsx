@@ -1,13 +1,12 @@
 import { Grid, TextField, Button,  } from "@mui/material";
  
 import { Form } from "formik";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+ import { useNavigate } from "react-router-dom";
 import { createUser } from "../utils/firebase";
 
 const RegisterForm = (props) => {
  const { values, handleChange, handleBlur, errors, touched } = props;
-const dispatch = useDispatch();
+ 
 const navigate = useNavigate()
 
 

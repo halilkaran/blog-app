@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
  import { setUpdateBlogAction } from "../redux/actions/setBlogAction";
+import { successNote } from "../utils/customTostify";
 import {    updateBlogData,   } from "../utils/firebase";
 
 const UpdateForm = (props) => {
@@ -32,6 +33,7 @@ const UpdateForm = (props) => {
 
      updateBlogData(data);
     navigate("/");
+    successNote("Updated")
   };
 
  

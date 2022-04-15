@@ -1,4 +1,4 @@
-import { SET_USER_LIST, SET_CURRENT_USER } from "../types/userTypes";
+import {   SET_CURRENT_USER } from "../types/userTypes";
 
 const initialState = {
   // userList: [],

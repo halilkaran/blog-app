@@ -1,28 +1,33 @@
-import { Grid, TextField, Button   } from "@mui/material";
+import { Grid, TextField, Button } from "@mui/material";
 import { Form } from "formik";
 import go from "../assets/goog.png";
 import { signIn, signUpWithGoogle } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch    } from "react-redux";
- 
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { successNote } from "../utils/customTostify";
 
 const SignUpForm = (props) => {
-   const navigate = useNavigate();
-
+  const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
   const { values, handleChange, handleBlur, errors, touched } = props;
   const dispatch = useDispatch();
 
+  const successNavigate = () => {
+    successNote("You are successfully Login");
+    navigate("/");
+  };
+  useEffect(() => {
+    currentUser && successNavigate();
+  }, [currentUser, navigate]);
+
+
   const handleLogin = async () => {
     signIn(dispatch, values.email, values.password);
-
-    navigate("/");
- 
   };
 
-  const handleGoogleSingIn =  () => {
-   signUpWithGoogle(dispatch);
-
-   navigate("/")
+  const handleGoogleSingIn = () => {
+    signUpWithGoogle(dispatch);
   };
 
   return (
@@ -85,7 +90,7 @@ const SignUpForm = (props) => {
             }}
           >
             CONTINUE WITH
-            <img src={go} width="150" height="40" />
+            <img src={go} alt="ally" width="150" height="40" />
           </Button>
         </Grid>
       </Grid>

@@ -1,6 +1,5 @@
-import { Container, Box, Avatar, Typography, Link } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { deepPurple } from "@mui/material/colors";
+import { Container, Box, Avatar, Typography, } from "@mui/material";
+ 
 import { Formik } from "formik";
  
 import { SignUpValidationSchema } from "../components/SignUpValidataionSchema";

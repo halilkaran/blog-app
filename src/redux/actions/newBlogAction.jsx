@@ -1,6 +1,6 @@
 import {
   SET_NEW_BLOG,
-  SET_UPDATE_BLOG,
+
   SET_CLEAR_BLOG
 } from "../types/blogTypes";
 

@@ -14,6 +14,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { BiCommentDetail } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { successNote } from "../utils/customTostify";
 
  
 
@@ -27,7 +28,7 @@ const navigate= useNavigate()
   const handleDetails = () => {
 
 currentUser ? navigate("/details" ,{state:card}): navigate("/login")
-
+successNote("Please Login")
 
 
   };
@@ -46,7 +47,7 @@ currentUser ? navigate("/details" ,{state:card}): navigate("/login")
       <CardMedia
         component="img"
         height="194"
-        image={card.image}
+        image={card?.image}
         alt="Paella dish"
       />
       <CardHeader
@@ -58,7 +59,7 @@ currentUser ? navigate("/details" ,{state:card}): navigate("/login")
           textAlign: "center",
           paddingBottom: "0.8rem"
         }}
-        title={card.title}
+        title={card?.title}
       />
       <CardHeader
         sx={{
@@ -69,7 +70,7 @@ currentUser ? navigate("/details" ,{state:card}): navigate("/login")
           textAlign: "center",
           paddingTop: "0rem"
         }}
-        subheader={card.date}
+        subheader={card?.date}
       />
 
       <CardContent>
@@ -83,7 +84,7 @@ currentUser ? navigate("/details" ,{state:card}): navigate("/login")
           variant="body2"
           color="text.secondary"
         >
-          {card.text}
+          {card?.text}
         </Typography>
       </CardContent>
       <Card>
@@ -99,8 +100,8 @@ currentUser ? navigate("/details" ,{state:card}): navigate("/login")
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe"></Avatar>
           }
-          title={card.name}
-          subheader={card.email}
+          title={card?.name}
+          subheader={card?.email}
         />
         <CardActions disableSpacing>
           <IconButton aria-label="add to favorites">

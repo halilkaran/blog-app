@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
  
 import { setNewBlogAction } from "../redux/actions/newBlogAction";
+import { successNote } from "../utils/customTostify";
 import { writeBlogData } from "../utils/firebase";
 
 const NewBlogForm = (props) => {
@@ -38,6 +39,7 @@ const { currentUser } = useSelector((state) => state.user);
     dispatch(setNewBlogAction(data));
     writeBlogData(id, data)
     navigate("/")
+    successNote("NEWBLOG Created")
     
      }
   return (

@@ -18,6 +18,7 @@ import {
 
 import { readBlogAction } from "../redux/actions/dashboardActions";
 import { setLoginAction, setLogoutAction } from "../redux/actions/userAction";
+import { successNote } from "./customTostify";
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -31,7 +32,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 //! Sign Up with Google Provider
 export const signUpWithGoogle = (dispatch) => {
@@ -42,7 +43,7 @@ export const signUpWithGoogle = (dispatch) => {
       dispatch(setLoginAction(res.user.auth.currentUser));
     })
     .catch((error) => {
-      console.log(error);
+      successNote(error)
     });
 };
 
@@ -58,7 +59,8 @@ export const createUser = async (email, password) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
-console.log(user);
+      console.log(user);
+successNote("successfully registered")
       // ...
     })
     .catch((error) => {
@@ -75,7 +77,7 @@ export const signIn = (dispatch, email, password) => {
     .then((res) => {
       dispatch(setLoginAction(res.user));
     })
-    .catch((err) => alert(err));
+    .catch((error) => {successNote("password or email is incorrect  ")});
 };
 
 export const writeBlogData = (userId, blogs) => {
@@ -126,5 +128,5 @@ export const deleteCard = (id) => {
   const db = getDatabase();
   // const userRef = ref(db, 'contact');
   remove(ref(db, "blog/" + id));
-  // successNote("Deleted");
+   successNote("Deleted");
 };
