@@ -16,7 +16,8 @@ export default function Profile() {
   return (
     <Box
       sx={{
-        marginTop: "6rem",
+        height: '100vh',
+         
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -26,6 +27,7 @@ export default function Profile() {
       <Card
         sx={{
           minWidth: "50vw",
+           
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -39,10 +41,11 @@ export default function Profile() {
               height: 130,
               width: 130,
               fontSize: "4rem",
-              textAlign: "center"
+              textAlign: "center",
+              marginTop:"2rem"
             }}
           >
-            {currentUser?.displayName || currentUser?.email.split("@")[0][0]}
+            {currentUser?.displayName[0] || currentUser?.email.split("@")[0][0]}
           </Avatar>
           <CardContent
             sx={{

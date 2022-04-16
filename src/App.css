@@ -1,3 +1,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
  @import url('https://fonts.googleapis.com/css2?family=Metamorphous&display=swap');
 
+body{
+    background-image: linear-gradient( #FCD47D , #196774);
+    background-repeat: no-repeat;
+}

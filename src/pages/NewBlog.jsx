@@ -8,7 +8,7 @@ const NewBlog = () => {
   return (
     <Container maxWidth="sm">
       <Box
-        sx={{
+        sx={{height:"100vh",
           marginTop: "2rem",
           display: "flex",
           flexDirection: "column",

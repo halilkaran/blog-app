@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
- 
+import "./Navbar.css";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -60,6 +60,7 @@ const dispatch = useDispatch();
         </Typography>
         <Typography sx={{ minWidth: 100 }}>
           <Link
+          className="linkhover"
             onClick={() => navigate("/")}
             sx={{
               fontSize: "2rem",

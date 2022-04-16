@@ -58,6 +58,7 @@ export default function Details() {
   return (
     <Box
       sx={{
+        height:"100vh",
         marginTop: "20vh",
         display: "flex",
         flexDirection: "column",
