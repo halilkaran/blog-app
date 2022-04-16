@@ -52,7 +52,8 @@ const dispatch = useDispatch();
           sx={{
             cursor: "pointer",
             color: "#D2E3DD",
-            fontFamily: "'Metamorphous', cursive"
+            fontFamily: "'Metamorphous', cursive",
+            padding: "2rem",
           }}
         >
           HALOKAR

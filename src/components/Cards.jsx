@@ -1,5 +1,5 @@
 import * as React from "react";
- 
+ import go from "../assets/goog.png";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
@@ -34,59 +34,61 @@ successNote("Please Login")
   };
 
   return (
-    <Card
-      onClick={handleDetails}
-      sx={{
-        backgroundColor: "#D2E3DD",
-        maxWidth: 345,
-        minWidth: 345,
-        display: "flex",
-        flexDirection: "column"
-      }}
-    >
-      <CardMedia
-        component="img"
-        height="194"
-        image={card?.image}
-        alt="Paella dish"
-      />
-      <CardHeader
+    <>
+      <Card
+        onClick={handleDetails}
         sx={{
+          backgroundColor: "#D2E3DD",
+          maxWidth: 345,
+          minWidth: 345,
           display: "flex",
-          flexDirection: "column",
-          alignItems: "center ",
-          justifyContent: "center",
-          textAlign: "center",
-          paddingBottom: "0.8rem"
+          flexDirection: "column"
         }}
-        title={card?.title}
-      />
-      <CardHeader
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center ",
-          justifyContent: "center",
-          textAlign: "center",
-          paddingTop: "0rem"
-        }}
-        subheader={card?.date}
-      />
-
-      <CardContent>
-        <Typography
+      >
+        <CardMedia
+          component="img"
+          height="194"
+          image={card?.image ?? go}
+          alt="Paella dish"
+        />
+        <CardHeader
           sx={{
-            height: "2.4rem",
-            padding: "0.3rem",
-            overflow: "hidden",
-            textAlign: "center"
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center ",
+            justifyContent: "center",
+            textAlign: "center",
+            paddingBottom: "0.8rem"
           }}
-          variant="body2"
-          color="text.secondary"
-        >
-          {card?.text}
-        </Typography>
-      </CardContent>
+          title={card?.title}
+        />
+        <CardHeader
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center ",
+            justifyContent: "center",
+            textAlign: "center",
+            paddingTop: "0rem"
+          }}
+          subheader={card?.date}
+        />
+
+        <CardContent>
+          <Typography
+            sx={{
+              height: "2.4rem",
+              padding: "0.3rem",
+              overflow: "hidden",
+              textAlign: "center"
+            }}
+            variant="body2"
+            color="text.secondary"
+          >
+            {card?.text}
+          </Typography>
+        </CardContent>
+      </Card>
       <Card>
         <CardHeader
           sx={{
@@ -113,6 +115,6 @@ successNote("Please Login")
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit></Collapse>
       </Card>
-    </Card>
+    </>
   );
 }

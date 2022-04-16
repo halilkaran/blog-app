@@ -13,7 +13,7 @@ const NewBlogForm = (props) => {
      const { values, handleChange, handleBlur } = props;
      const dispatch = useDispatch();
 const { currentUser } = useSelector((state) => state.user);
- const { blogs } = useSelector((state) => state.blog);
+
 
    
  
@@ -24,18 +24,24 @@ const { currentUser } = useSelector((state) => state.user);
   const handleSubmit = (e) => {
     e.preventDefault();
    const id=Date.now()
- const date=new Date();
+    const date = new Date();
+     console.log(values.image ==="" ? "q":"dolu");
     const dates = [date.getDate()," ", date.toLocaleString('default', { month: 'long' }), " ", date.getFullYear()];
     const data = {
       id: id,
-      image: values.image,
+      image:
+        values.image === ""
+          ? "https://cdn.pixabay.com/photo/2014/08/27/08/11/blogging-428955_960_720.jpg"
+          : values.image,
       title: values.title,
       date: dates,
       text: values.text,
       email: currentUser.email,
-      name: currentUser.displayName?currentUser.displayName:currentUser.email.split("@")[0]
+      name: currentUser.displayName
+        ? currentUser.displayName
+        : currentUser.email.split("@")[0]
     };
-    console.log(blogs[0], data.id);
+   
     dispatch(setNewBlogAction(data));
     writeBlogData(id, data)
     navigate("/")

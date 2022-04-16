@@ -19,17 +19,29 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import UpdateIcon from "@mui/icons-material/Update";
 import { deleteCard } from "../utils/firebase";
 import { useSelector } from "react-redux";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { styled } from "@mui/material/styles";
+
+const ExpandMore = styled((props) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  marginLeft: "auto",
+  transition: theme.transitions.create("transform", {
+    duration: theme.transitions.duration.shortest
+  })
+}));
 
 export default function Details() {
+  const [expanded, setExpanded] = React.useState(false);
   const { state } = useLocation();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
-  
 
-  const [expanded] = React.useState(false);
   const card = state;
   console.log(card);
-console.log(Boolean(currentUser.email === card.email));
+  console.log(Boolean(currentUser.email === card.email));
   const handleUpdate = () => {
     navigate("/update", { state: card });
   };
@@ -38,6 +50,10 @@ console.log(Boolean(currentUser.email === card.email));
     console.log(id);
     deleteCard(id);
     navigate("/");
+  };
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
   };
   return (
     <Box
@@ -104,6 +120,20 @@ console.log(Boolean(currentUser.email === card.email));
             {card.text}
           </Typography>
         </CardContent>
+        <ExpandMore
+          expand={expanded}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </ExpandMore>
+
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph>{card.text}</Typography>
+          </CardContent>
+        </Collapse>
         <Card>
           <CardHeader
             sx={{
