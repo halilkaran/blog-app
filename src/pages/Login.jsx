@@ -15,7 +15,8 @@ const Login = () => {
           marginTop: "20vh",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+         
         }}
       >
         <Avatar

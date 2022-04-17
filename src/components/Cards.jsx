@@ -39,8 +39,8 @@ successNote("Please Login")
         onClick={handleDetails}
         sx={{
           backgroundColor: "#D2E3DD",
-          maxWidth: 345,
-          minWidth: 345,
+          maxWidth: 375,
+          minWidth: 375,
           display: "flex",
           flexDirection: "column"
         }}
@@ -48,7 +48,11 @@ successNote("Please Login")
         <CardMedia
           component="img"
           height="194"
-          image={card?.image ?? go}
+          image={
+            card.image == ""
+              ? "https://cdn.pixabay.com/photo/2014/08/27/08/11/blogging-428955_960_720.jpg"
+              : card.image
+          }
           alt="Paella dish"
         />
         <CardHeader
@@ -58,7 +62,7 @@ successNote("Please Login")
             alignItems: "center ",
             justifyContent: "center",
             textAlign: "center",
-            paddingBottom: "0.8rem"
+            paddingBottom: "0.8rem",
           }}
           title={card?.title}
         />

@@ -58,8 +58,7 @@ export default function Details() {
   return (
     <Box
       sx={{
-        height:"100vh",
-        marginTop: "20vh",
+        marginTop: "10vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center"
@@ -68,9 +67,9 @@ export default function Details() {
       <Card
         sx={{
           backgroundColor: "#D2E3DD",
-          maxWidth: "50%",
-          minWidth: "50%",
-          minHeight: "50vh",
+          maxWidth: "40%",
+          minWidth: "40%",
+          minHeight: "40vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
@@ -79,8 +78,12 @@ export default function Details() {
       >
         <CardMedia
           component="img"
-          height="300"
-          image={card.image}
+          height="200"
+          image={
+            card.image == ""
+              ? "https://cdn.pixabay.com/photo/2014/08/27/08/11/blogging-428955_960_720.jpg"
+              : card.image
+          }
           alt="Paella dish"
         />
         <CardHeader
@@ -109,7 +112,7 @@ export default function Details() {
         <CardContent>
           <Typography
             sx={{
-              fontSize: "1.4rem",
+              fontSize: "1.2rem",
               height: "3.4rem",
               padding: "0.3rem",
               overflow: "hidden",

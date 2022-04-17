@@ -55,6 +55,7 @@ const UpdateForm = (props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 fullWidth
+                color="warning"
               />
             </Grid>
             <Grid item xs={12}>
@@ -68,6 +69,7 @@ const UpdateForm = (props) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 fullWidth
+                color="warning"
               />
             </Grid>
             <Grid item xs={12}>
@@ -84,14 +86,16 @@ const UpdateForm = (props) => {
                   fontSize: "1.1rem",
                   padding: "1rem",
                   width: 550,
-                  height: 200
+                  height: 200,
+                  backgroundColor: "transparent",
+                  color:"white"
                 }}
               />
             </Grid>
 
             <Grid item xs={12}>
               <Button
-               type="submit"
+                type="submit"
                 variant="contained"
                 fullWidth
                 sx={{

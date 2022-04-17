@@ -1,32 +1,31 @@
 import { TextareaAutosize } from "@mui/material";
 import { Grid, TextField, Button } from "@mui/material";
-  import { Form } from "formik";
+import { Form } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
- 
+
 import { setNewBlogAction } from "../redux/actions/newBlogAction";
 import { successNote } from "../utils/customTostify";
 import { writeBlogData } from "../utils/firebase";
 
 const NewBlogForm = (props) => {
-     const navigate = useNavigate()
-     const { values, handleChange, handleBlur } = props;
-     const dispatch = useDispatch();
-const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const { values, handleChange, handleBlur } = props;
+  const dispatch = useDispatch();
+  const { currentUser } = useSelector((state) => state.user);
 
-
-   
- 
-  
-  
-  
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-   const id=Date.now()
+    const id = Date.now();
     const date = new Date();
-     console.log(values.image ==="" ? "q":"dolu");
-    const dates = [date.getDate()," ", date.toLocaleString('default', { month: 'long' }), " ", date.getFullYear()];
+    console.log(values.image === "" ? "q" : "dolu");
+    const dates = [
+      date.getDate(),
+      " ",
+      date.toLocaleString("default", { month: "long" }),
+      " ",
+      date.getFullYear()
+    ];
     const data = {
       id: id,
       image:
@@ -41,13 +40,12 @@ const { currentUser } = useSelector((state) => state.user);
         ? currentUser.displayName
         : currentUser.email.split("@")[0]
     };
-   
+
     dispatch(setNewBlogAction(data));
-    writeBlogData(id, data)
-    navigate("/")
-    successNote("NEWBLOG Created")
-    
-     }
+    writeBlogData(id, data);
+    navigate("/");
+    successNote("NEWBLOG Created");
+  };
   return (
     <div>
       {currentUser ? (
@@ -64,6 +62,7 @@ const { currentUser } = useSelector((state) => state.user);
                 onChange={handleChange}
                 onBlur={handleBlur}
                 fullWidth
+                color="warning"
               />
             </Grid>
             <Grid item xs={12}>
@@ -77,6 +76,10 @@ const { currentUser } = useSelector((state) => state.user);
                 onChange={handleChange}
                 onBlur={handleBlur}
                 fullWidth
+                color="warning"
+                sx={{
+                  color: "white"
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,7 +96,9 @@ const { currentUser } = useSelector((state) => state.user);
                   fontSize: "1.1rem",
                   padding: "1rem",
                   width: 550,
-                  height: 200
+                  height: 200,
+                  backgroundColor: "transparent",
+                  color: "white"
                 }}
               />
             </Grid>
@@ -115,9 +120,9 @@ const { currentUser } = useSelector((state) => state.user);
           </Grid>
         </Form>
       ) : (
-       ()=> navigate("/")
+        () => navigate("/")
       )}{" "}
     </div>
   );
 };
- export default NewBlogForm;
+export default NewBlogForm;

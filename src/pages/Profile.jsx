@@ -16,8 +16,8 @@ export default function Profile() {
   return (
     <Box
       sx={{
-        height: '100vh',
-         
+        height: "100vh",
+
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -25,9 +25,11 @@ export default function Profile() {
       }}
     >
       <Card
+       
         sx={{
-          minWidth: "50vw",
-           
+          backgroundColor: "#BBA9A7",
+          minWidth: "40vw",
+          borderRadius: "7rem",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -42,7 +44,7 @@ export default function Profile() {
               width: 130,
               fontSize: "4rem",
               textAlign: "center",
-              marginTop:"2rem"
+              marginTop: "2rem"
             }}
           >
             {currentUser?.displayName[0] || currentUser?.email.split("@")[0][0]}
