@@ -3,7 +3,7 @@
 </div>
  <div id="badges" align="center">
   
-    <img src="https://ibb.co/MBfzY0X" alt="LinkedIn "/>
+    <img src="https://ibb.co/MBfzY0X" alt="L "/>
    
  
  
