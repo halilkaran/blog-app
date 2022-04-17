@@ -59,6 +59,7 @@ export default function Details() {
     <Box
       sx={{
         marginTop: "10vh",
+        marginBottom: "2rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center"
@@ -69,7 +70,7 @@ export default function Details() {
           backgroundColor: "#D2E3DD",
           maxWidth: "40%",
           minWidth: "40%",
-          minHeight: "40vh",
+          minHeight: "30vh",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",

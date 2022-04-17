@@ -26,9 +26,9 @@ const navigate= useNavigate()
   console.log(card);
  const { currentUser } = useSelector((state) => state.user);
   const handleDetails = () => {
-
-currentUser ? navigate("/details" ,{state:card}): navigate("/login")
-successNote("Please Login")
+currentUser ?? successNote("Please login")
+currentUser ? navigate("/details" ,{state:card}):  navigate("/login");
+ 
 
 
   };
