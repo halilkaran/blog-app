@@ -81,7 +81,7 @@ export default function Details() {
           component="img"
           height="200"
           image={
-            card.image == ""
+            card.image === ""
               ? "https://cdn.pixabay.com/photo/2014/08/27/08/11/blogging-428955_960_720.jpg"
               : card.image
           }
