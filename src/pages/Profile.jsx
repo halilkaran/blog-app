@@ -47,7 +47,7 @@ export default function Profile() {
               marginTop: "2rem"
             }}
           >
-            {currentUser?.displayName[0] || currentUser?.email.split("@")[0][0]}
+            {currentUser?.displayName[0] || currentUser?.email.split("@")[0][0] || " "}
           </Avatar>
           <CardContent
             sx={{
