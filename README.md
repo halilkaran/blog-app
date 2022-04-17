@@ -1,10 +1,5 @@
 # BLOGG APP
 ### [LIVE SITE] (https://blogapp-halo.netlify.app/)
-<img src="https://ibb.co/MBfzY0X" width="100"/>
- <div  align="center">
-  
-    <img src="https://ibb.co/MBfzY0X" alt="L "/>
-  
-</div>
-
-![live]( https://ibb.co/MBfzY0X)
+<img  src="https://giphy.com/embed/lfLgCe3Nuyo3LDoULN" width="478" height="480"/>
+ 
+<iframe src="https://giphy.com/embed/lfLgCe3Nuyo3LDoULN" width="478" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/lfLgCe3Nuyo3LDoULN">via GIPHY</a></p>
