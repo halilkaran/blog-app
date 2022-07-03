@@ -12,7 +12,7 @@ export default function Profile() {
   
   const { currentUser } = useSelector((state) => state.user);
   
-  const {displayName,  email} = currentUser; 
+  const { email} = currentUser; 
   return (
     <Box
       sx={{
@@ -47,7 +47,7 @@ export default function Profile() {
               marginTop: "2rem"
             }}
           >
-            {currentUser?.displayName[0] || currentUser?.email.split("@")[0][0] || " "}
+            {currentUser?.email.split("@")[0][0] || " "}
           </Avatar>
           <CardContent
             sx={{
@@ -61,7 +61,7 @@ export default function Profile() {
               Display Name
             </Typography>
             <Typography variant="h4" component="div">
-              {displayName || currentUser?.email.split("@")[0]}
+              {currentUser?.email.split("@")[0]}
             </Typography>
             <Typography gutterBottom variant="h6" component="div">
               Email
